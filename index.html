@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title id="Description">Titanic Dashboard</title>
-    <meta name="description" content="This sample demonstrates how we can bind jQWidgets DataTable widget to JSON Data by using jQWidgets DataAdapter plugin.">
+    <meta name="description"
+        content="This sample demonstrates how we can bind jQWidgets DataTable widget to JSON Data by using jQWidgets DataAdapter plugin.">
     <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />	
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="jqwidgets/jqxdata.js"></script> 
+    <script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
@@ -29,32 +32,49 @@
     <script type="text/javascript" src="jqwidgets/jqxform.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </head>
+
 <body class='default'>
-    
+
     <!-- Legend for column names -->
     <div id="legend"></div>
 
     <!-- Data Grid -->
-    <div id="jqxgrid"> 
+    <div id="jqxgrid">
     </div>
 
     <!-- Popup window for CSV upload -->
     <div id="uploadWindow" style="overflow: hidden;">
         <div id="uploadTitle"></div>
-        
-        <table>
-            <tr>
-                <td align="right"></td>
-                <td align="left"><div id="selectUpload"></div></td>
-            </tr>
-            <tr>
-                <td align="right"></td>
-                <td style="padding-top: 10px;" align="right">
-                    <input style="margin-right: 5px;" type="button" id="uploadSave" value="Upload" />
-                    <input id="cancelUpload" type="button" value="Close" />
-                </td>
-            </tr>    
-        </table>
+        <form id="uploadForm">
+            <table>
+                <tr>
+                    <td align="right"></td>
+                    <td align="left">
+                        <input id="fileSelect" type="file" name="file"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"></td>
+                    <td align="left">
+                        <div id="uploadError"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"></td>
+                    <td align="left">
+                        <div id="progress" style="overflow: hidden;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    
+                    <td align="right"></td>
+                    <td style="padding-top: 10px;" align="right">
+                        <input style="margin-right: 5px;" type="button" id="uploadSave" value="Upload" />
+                        <input id="cancelUpload" type="button" value="Close" />
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 
     <!-- Popup window for create/update -->
@@ -76,15 +96,21 @@
                 </tr>
                 <tr>
                     <td align="right">Sex:</td>
-                    <td align="left"><div id="sex"></div></td>
+                    <td align="left">
+                        <div id="sex"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Passenger Class:</td>
-                    <td align="left"><div id="pclass"></div></td>
+                    <td align="left">
+                        <div id="pclass"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Survived:</td>
-                    <td align="left"><div id="survived"></div></td>
+                    <td align="left">
+                        <div id="survived"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Number of siblings/spouse:</td>
@@ -96,11 +122,13 @@
                 </tr>
                 <tr>
                     <td align="right">Ticket number:</td>
-                    <td align="left"><input id="ticket"/></td>
+                    <td align="left"><input id="ticket" /></td>
                 </tr>
                 <tr>
                     <td align="right">Fare:</td>
-                    <td align="left"><div id="fare"></div></td>
+                    <td align="left">
+                        <div id="fare"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right">Cabin number:</td>
@@ -108,7 +136,9 @@
                 </tr>
                 <tr>
                     <td align="right">Port of embarkation:</td>
-                    <td align="left"><div id="embarked"></div></td>
+                    <td align="left">
+                        <div id="embarked"></div>
+                    </td>
                 </tr>
                 <tr>
                     <td align="right"></td>
@@ -120,6 +150,7 @@
             </table>
         </div>
     </div>
-    
+
 </body>
+
 </html>

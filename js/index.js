@@ -216,7 +216,6 @@ $(document).ready(function () {
             data.access_token = token_;
             return data;
         }
-
     });
 
     var editrow = -1;
@@ -228,7 +227,7 @@ $(document).ready(function () {
     $("#jqxgrid").jqxGrid(
     {
         theme: 'bootstrap',
-        width: '75%',
+        width: 890,
         pageable: true,
         pagerButtonsCount: 10,
         source: dataAdapter,
@@ -239,11 +238,11 @@ $(document).ready(function () {
         altrows: true,
         columns: [
             { text: 'Name', dataField: 'name', width: 100},
-            { text: 'Age', dataField: 'age', width: 50},
+            { text: 'Age', dataField: 'age', width: 40},
             { 
                 text: 'Sex', 
                 dataField: 'sex', 
-                width: 100,
+                width: 60,
                 cellsformat: 'c2',
                 cellsrenderer: function(row, columnfield, value, defaulthtml, columnproperties) {
                     var cell_sex = value.toLowerCase();
@@ -256,7 +255,7 @@ $(document).ready(function () {
             { 
                 text: 'P Class', 
                 dataField: 'pclass', 
-                width: 100,
+                width: 70,
                 cellsrenderer: function(row, columnfield, value, defaulthtml, columnproperties) {
                     var cell_pclass = value;
                     for(var i = 0; i < pclass.length; i++) {
@@ -269,7 +268,7 @@ $(document).ready(function () {
             { 
                 text: 'Survived', 
                 dataField: 'survived', 
-                width: 50,
+                width: 60,
                 cellsrenderer: function(row, columnfield, value, defaulthtml, columnproperties) {
                     var cell_survived = value;
                     for(var i = 0; i < survived.length; i++) {
@@ -281,8 +280,8 @@ $(document).ready(function () {
             },
             { text: 'SIBSP', dataField: 'sibsp', width: 50},
             { text: 'PARCH', dataField: 'parch', width: 50},
-            { text: 'Ticket', dataField: 'ticket', width: 100},
-            { text: 'Fare', dataField: 'fare', width: 100},
+            { text: 'Ticket', dataField: 'ticket', width: 80},
+            { text: 'Fare', dataField: 'fare', width: 60},
             { text: 'Cabin', dataField: 'cabin', width: 100},
             { 
                 text: 'POE', 
@@ -298,7 +297,8 @@ $(document).ready(function () {
                 }
             },
             { 
-                text: 'Edit', 
+                text: 'Edit',
+                width: 50,
                 datafield: 'Edit', 
                 columntype: 'button', 
                 cellsrenderer: function () {
@@ -331,7 +331,8 @@ $(document).ready(function () {
                 }
             },
             { 
-                text: 'Delete', 
+                text: 'Delete',
+                width: 70,
                 datafield: 'Delete', 
                 columntype: 'button', 
                 cellsrenderer: function () {
@@ -379,7 +380,7 @@ $(document).ready(function () {
             
             $("#popupWindow").jqxWindow('open');
         
-    });
+        });
 
         $("#uploadButton").jqxButton({theme: 'bootstrap',});
         $("#uploadButton").bind('click', function () {
@@ -394,6 +395,7 @@ $(document).ready(function () {
 
 
       }
+
     });
     
     $("#uploadWindow").jqxWindow({
@@ -406,8 +408,43 @@ $(document).ready(function () {
         modalOpacity: 0.6          
     });
     
+    $("#uploadSave").bind('click', function () {
+            
+        var myFile = $('#fileSelect');
+        var csvFile = myFile[0].files[0];
+
+        var form = $('#uploadForm')[0];
+        var formData = new FormData(form);
+        
+
+        if(myFile === '') {
+            $('#uploadError').text('Please select a file to upload');
+        } else {
+            
+            $.ajax({
+                cache: false,
+                url: uplURL + $.param({'access_token': token_}),
+                data: formData,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                success: function (data, status, xhr) {
+                    $('#jqxgrid').jqxGrid('updatebounddata');
+                    $('#uploadWindow').jqxWindow('close');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    
+                }
+            });
+            
+        }
+    
+    });
+
     $("#cancelUpload").jqxButton({theme: 'bootstrap'});
     $("#uploadSave").jqxButton({theme: 'bootstrap'});
+
+    
 
     $("#popupWindow").jqxWindow({
         theme: 'bootstrap', 
@@ -418,12 +455,10 @@ $(document).ready(function () {
         cancelButton: $("#Cancel"), 
         modalOpacity: 0.6           
     });
-    
     $("#Cancel").jqxButton({theme: 'bootstrap'});
     $("#Save").jqxButton({theme: 'bootstrap'});
     
     $("#Save").click(function () {
-        
         var row = { 
             "passengerId": $("#passengerId").val(),
             "survived": $("#survived").val(),
