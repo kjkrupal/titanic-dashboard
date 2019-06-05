@@ -48,7 +48,7 @@ $(document).ready(function () {
     ];
 
     $("#passengerId").jqxNumberInput({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         spinMode: 'simple',
         inputMode: 'simple',
         width: 150, 
@@ -57,9 +57,9 @@ $(document).ready(function () {
         decimalDigits: 0, 
         spinButtons: true 
     });
-    $("#name").jqxInput({theme: 'bootstrap',width: 150, height: 23});
+    $("#name").jqxInput({theme: 'custom',width: 150, height: 23});
     $("#age").jqxNumberInput({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         spinMode: 'simple',
         inputMode: 'simple',
         width: 150, 
@@ -68,10 +68,10 @@ $(document).ready(function () {
         decimalDigits: 0, 
         spinButtons: true 
     });
-    $("#ticket").jqxInput({theme: 'bootstrap',width: 150, height: 23});
-    $("#cabin").jqxInput({theme: 'bootstrap',width: 150, height: 23});
+    $("#ticket").jqxInput({theme: 'custom',width: 150, height: 23});
+    $("#cabin").jqxInput({theme: 'custom',width: 150, height: 23});
     $("#sibsp").jqxNumberInput({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         spinMode: 'simple',
         inputMode: 'simple',
         width: 150, 
@@ -81,7 +81,7 @@ $(document).ready(function () {
         spinButtons: true 
     });
     $("#parch").jqxNumberInput({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         spinMode: 'simple',
         inputMode: 'simple',
         width: 150, 
@@ -91,7 +91,7 @@ $(document).ready(function () {
         spinButtons: true 
     });
     $("#fare").jqxNumberInput({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         spinMode: 'simple',
         inputMode: 'simple', 
         width: 150, 
@@ -100,7 +100,7 @@ $(document).ready(function () {
         spinButtons: true 
     });
     $("#embarked").jqxDropDownList({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         source: embarked,
         placeHolder: '-- Select --',
         autoDropDownHeight: true,
@@ -109,7 +109,7 @@ $(document).ready(function () {
         valueMember: 'value'
     });
     $("#sex").jqxDropDownList({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         source: sex,
         placeHolder: '-- Select --',
         autoDropDownHeight: true,
@@ -118,7 +118,7 @@ $(document).ready(function () {
         valueMember: 'value'
     });
     $("#survived").jqxDropDownList({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         source: survived,
         placeHolder: '-- Select --',
         autoDropDownHeight: true,
@@ -127,7 +127,7 @@ $(document).ready(function () {
         valueMember: 'value'
     });
     $("#pclass").jqxDropDownList({ 
-        theme: 'bootstrap',
+        theme: 'custom',
         source: pclass,
         placeHolder: '-- Select --',
         autoDropDownHeight: true,
@@ -226,7 +226,7 @@ $(document).ready(function () {
 
     $("#jqxgrid").jqxGrid(
     {
-        theme: 'bootstrap',
+        theme: 'custom',
         width: 890,
         pageable: true,
         pagerButtonsCount: 10,
@@ -344,27 +344,25 @@ $(document).ready(function () {
             }
       ],
       renderToolbar: function(toolbar) {
-        
-        var containerA = $("<div style='margin-left: 30px; float: left;'></div>");
-        var input = $("<div><input id='addrowbutton' type='button' value='Add New Row' /></div>");
-        toolbar.append(containerA);
-        containerA.append(input);
-
-        var containerB = $("<div style='margin-left: 30px; float: left;'></div>");
-        var upload = $("<div><input id='uploadButton' type='button' value='Upload CSV' /></div>");
-        toolbar.append(containerB);
-        containerB.append(upload);
+       
+        var container = $("<div style='overflow: hidden; position: relative; margin: 5px;'></div>");
+        var addButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='jqwidgets/styles/images/plus_white.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>Add</span></div>"); 
+        var uploadButton = $("<div style='float: left; margin-left: 5px;'><img style='position: relative; margin-top: 2px;' src='jqwidgets/styles/images/upload.png'/><span style='margin-left: 4px; position: relative; top: -3px;'>Upload CSV</span></div>");
+    
+        container.append(addButton);
+        container.append(uploadButton);
+        toolbar.append(container);
         
         
-        $("#addrowbutton").jqxButton({theme: 'bootstrap',});
-        $("#addrowbutton").bind('click', function () {
+        addButton.jqxButton({theme: 'custom', width: 65, height: 20});
+        addButton.click(function () {
             
             editForm = false;
             createForm = true;
             $("#formTitle").text("Create");
             var offset = $("#jqxgrid").offset();
             $("#popupWindow").jqxWindow({ position: { x: parseInt(offset.left) + 60, y: parseInt(offset.top) + 60 } });
-            
+
             $("#passengerId").jqxNumberInput('val', null);
             $("#name").jqxInput('val', '');
             $("#age").jqxNumberInput('val', null);
@@ -382,8 +380,8 @@ $(document).ready(function () {
         
         });
 
-        $("#uploadButton").jqxButton({theme: 'bootstrap',});
-        $("#uploadButton").bind('click', function () {
+        uploadButton.jqxButton({theme: 'custom',width: 85, height: 20});
+        uploadButton.click(function () {
             
             $("#uploadTitle").text("Upload CSV");
             var offset = $("#jqxgrid").offset();
@@ -400,7 +398,7 @@ $(document).ready(function () {
     });
   
     $("#uploadWindow").jqxWindow({
-        theme: 'bootstrap', 
+        theme: 'custom', 
         width: 375, height: 200, 
         resizable: false,  
         isModal: true, 
@@ -442,13 +440,13 @@ $(document).ready(function () {
     
     });
 
-    $("#cancelUpload").jqxButton({theme: 'bootstrap'});
-    $("#uploadSave").jqxButton({theme: 'bootstrap'});
+    $("#cancelUpload").jqxButton({theme: 'custom'});
+    $("#uploadSave").jqxButton({theme: 'custom'});
 
     
 
     $("#popupWindow").jqxWindow({
-        theme: 'bootstrap', 
+        theme: 'custom', 
         width: 375, height: 500, 
         resizable: false,  
         isModal: true, 
@@ -456,8 +454,8 @@ $(document).ready(function () {
         cancelButton: $("#Cancel"), 
         modalOpacity: 0.6           
     });
-    $("#Cancel").jqxButton({theme: 'bootstrap'});
-    $("#Save").jqxButton({theme: 'bootstrap'});
+    $("#Cancel").jqxButton({theme: 'custom'});
+    $("#Save").jqxButton({theme: 'custom'});
     
     $("#Save").click(function () {
         var row = { 
