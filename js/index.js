@@ -236,6 +236,9 @@ $(document).ready(function () {
         autoheight: true,
         showToolbar: true,
         altrows: true,
+        sortable: true,
+        filterable:true,
+        autoshowloadelement:false,
         columns: [
             { text: 'Name', dataField: 'name', width: 100},
             { text: 'Age', dataField: 'age', width: 40},
